@@ -1,5 +1,6 @@
 # NitroGen + Hermes (this PC)
 
+Fork: https://github.com/MCrashCraft/NitroGen (branch `hermes-overlay`)  
 Upstream: https://github.com/MineDojo/NitroGen  
 Model: https://huggingface.co/nvidia/NitroGen (`ng.pt`)
 
