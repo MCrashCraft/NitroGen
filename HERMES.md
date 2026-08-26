@@ -1,27 +1,25 @@
-# NitroGen + Hermes (stock)
+# Hermes = brain. NitroGen = hands.
 
-Fork: https://github.com/MCrashCraft/NitroGen (branch `hermes-overlay`)  
+Fork: https://github.com/MCrashCraft/NitroGen (`hermes-overlay`)  
 Upstream: https://github.com/MineDojo/NitroGen
 
-Hermes **starts and stops** NitroGen. NitroGen plays **like the original**: screenshot → `ng.pt` → **ViGEm Xbox pad**. Any Windows game the stock agent can drive.
+**Hermes** chooses the game, when to start, when to stop.  
+**NitroGen** is stock: one frame → ViGEm Xbox pad. Any Windows game.
 
-No WASD remapper. No Minecraft-only mapper.
+No WASD remapper.
 
-## Hermes job
+## Commands (Anya runs these)
 
-1. Game is already open (user’s copy).
-2. Start `scripts/serve.py <ng.pt>` if port 5555 is down.
-3. Start `scripts/play.py --process <exact.exe>` (Task Manager name).
-4. Stop both when he says stop.
+```
+python scripts/hermes_control.py status
+python scripts/hermes_control.py start --process celeste.exe --seconds 60
+python scripts/hermes_control.py stop
+```
 
-Helper: `python scripts/hermes_control.py --process javaw.exe --seconds 60`
+`--process` = Task Manager exe name. Game must already be open.
 
 ## Need
 
-- `pip install -e .` in this repo
+- `pip install -e .`
 - `hf download nvidia/NitroGen ng.pt`
-- [ViGEmBus](https://github.com/nefarius/ViGEmBus) (stock `vgamepad`)
-
-## Not
-
-A planner. One-frame reflex. Hermes picks the `.exe` and the clock. NitroGen presses the pad.
+- ViGEmBus (stock vgamepad)
