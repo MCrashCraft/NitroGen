@@ -1,31 +1,27 @@
-# NitroGen + Hermes (this PC)
+# NitroGen + Hermes (stock)
 
 Fork: https://github.com/MCrashCraft/NitroGen (branch `hermes-overlay`)  
-Upstream: https://github.com/MineDojo/NitroGen  
-Model: https://huggingface.co/nvidia/NitroGen (`ng.pt`)
+Upstream: https://github.com/MineDojo/NitroGen
 
-NitroGen is a **500M** pixel → **gamepad** model. It is **not** a planner. Windows games only.
+Hermes **starts and stops** NitroGen. NitroGen plays **like the original**: screenshot → `ng.pt` → **ViGEm Xbox pad**. Any Windows game the stock agent can drive.
 
-## Hermes overlay (this fork)
+No WASD remapper. No Minecraft-only mapper.
 
-- `nitrogen/hermes_kb.py` — maps sticks/buttons to **raw WASD + mouse** (Minecraft).
-- `scripts/play_hermes.py` — capture via stock `GamepadEnv`, act via Hermes keys unless `--gamepad`.
+## Hermes job
 
-Stock `play.py` still uses ViGEm (`vgamepad`). Use that for pad-only games.
+1. Game is already open (user’s copy).
+2. Start `scripts/serve.py <ng.pt>` if port 5555 is down.
+3. Start `scripts/play.py --process <exact.exe>` (Task Manager name).
+4. Stop both when he says stop.
 
-## Run
+Helper: `python scripts/hermes_control.py --process javaw.exe --seconds 60`
 
-```
-cd C:\Users\micha\Desktop\NitroGen
-python -m venv .venv
-.venv\Scripts\pip install -e .
-hf download nvidia/NitroGen ng.pt
-.venv\Scripts\python scripts\serve.py <path_to_ng.pt>
-.venv\Scripts\python scripts\play_hermes.py --process javaw.exe --seconds 60
-```
+## Need
 
-Minecraft process is `javaw.exe`. Stay off the mouse while it runs.
+- `pip install -e .` in this repo
+- `hf download nvidia/NitroGen ng.pt`
+- [ViGEmBus](https://github.com/nefarius/ViGEmBus) (stock `vgamepad`)
 
-## Anya
+## Not
 
-Load `gaming-agent-noobie`. Prefer NitroGen for fast react. Keep scout+raw hold-mine for “aim at birch then hold.”
+A planner. One-frame reflex. Hermes picks the `.exe` and the clock. NitroGen presses the pad.
